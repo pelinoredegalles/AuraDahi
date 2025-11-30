@@ -18,7 +18,16 @@ with st.sidebar:
     st.markdown("""
         <div style='text-align: center; color: #9B8B7E;'>
             <p><strong>📍 Fuengirola</strong></p>
-            <p><small>Velas 100% soja artesanales</small></p>
+            <p><small>🕯️ Velas 100% soja artesanales</small></p>
+            <p><small>🪔 Adornos cerámicos únicos</small></p>
+        </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("---")
+    st.markdown("""
+        <div style='text-align: center; font-size: 12px; color: #9B8B7E;'>
+            <p style='margin: 5px 0;'><a href='https://www.instagram.com/auradahi/' target='_blank' style='color: #9B8B7E; text-decoration: none;'>📸 Instagram</a></p>
+            <p style='margin: 5px 0;'><a href='https://wa.me/34611822813' target='_blank' style='color: #9B8B7E; text-decoration: none;'>💬 WhatsApp</a></p>
         </div>
     """, unsafe_allow_html=True)
 
@@ -195,45 +204,89 @@ if page == "🏠 Inicio":
     """, unsafe_allow_html=True)
 
 else:
-    st.markdown("<h1 style='text-align: center; color: #9B8B7E;'>✨ Como Hacemos Nuestras Velas</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; color: #9B8B7E;'>✨ Como Hacemos Nuestras Creaciones</h1>", unsafe_allow_html=True)
 
     st.markdown("""
         <div style='text-align: center; color: #9B8B7E; margin: 30px 0;'>
-            <p style='font-size: 18px;'>Cada vela Aura Dahi es creada con dedicacion, pasion y los mejores materiales.</p>
+            <p style='font-size: 18px;'>Cada creacion Aura Dahi es realizada con dedicacion, pasion y los mejores materiales.</p>
             <p>Aqui te mostramos nuestro proceso artesanal paso a paso.</p>
         </div>
     """, unsafe_allow_html=True)
 
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        tipo_col1, tipo_col2 = st.columns(2)
+        with tipo_col1:
+            if st.button("🕯️ Velas", use_container_width=True, key="btn_velas"):
+                st.session_state.tipo_creacion = "velas"
+        with tipo_col2:
+            if st.button("🪔 Cerámicas", use_container_width=True, key="btn_ceramicas"):
+                st.session_state.tipo_creacion = "ceramicas"
+    
+    if "tipo_creacion" not in st.session_state:
+        st.session_state.tipo_creacion = "velas"
+
     st.markdown("---")
 
-    st.markdown("""
-        <div class='section-card'>
-            <div class='section-title'>📋 Nuestro Proceso Artesanal</div>
-            <p>Cada vela pasa por diferentes etapas de produccion cuidadosamente controladas para garantizar la maxima calidad.</p>
-        </div>
-    """, unsafe_allow_html=True)
-
-    steps = [
-        ("Seleccion de Materiales", "Comenzamos seleccionando los mejores materiales: cera de soja 100% pura, fragancias naturales de calidad premium y ceramicas artesanales."),
-        ("Preparacion de la Cera", "La cera se funde suavemente a la temperatura exacta para mantener todas sus propiedades naturales y conseguir una textura perfecta."),
-        ("Creacion Ceramica", "Cada adorno ceramico es creado a mano en nuestro taller. Los moldeamos con precision y los cocemos en horno para mayor durabilidad."),
-        ("Mezcla de Fragancias", "Las fragancias se mezclan cuidadosamente con la cera para garantizar una distribucion uniforme del aroma."),
-        ("Vertido en Moldes", "Vertemos la cera con el adorno ceramico en moldes especiales. Cada vela se crea manualmente con amor y atencion."),
-        ("Enfriamiento y Curado", "Las velas se dejan enfriar lentamente durante 24-48 horas para que fraguen correctamente y adquieran su dureza ideal."),
-        ("Control de Calidad", "Cada vela pasa por un riguroso control de calidad antes de ser embalada y lista para llegar a tus manos."),
-        ("Empaque Cuidadoso", "Las velas se empacan cuidadosamente para garantizar que lleguen en perfecto estado a tu hogar.")
-    ]
-
-    for idx, (title, desc) in enumerate(steps, 1):
-        st.markdown(f"""
-            <div class='process-step'>
-                <div class='step-number'>{idx}</div>
-                <div class='step-content'>
-                    <div class='step-title'>{title}</div>
-                    <div class='step-description'>{desc}</div>
-                </div>
+    if st.session_state.tipo_creacion == "velas":
+        st.markdown("""
+            <div class='section-card'>
+                <div class='section-title'>📋 Proceso de Creacion de Velas</div>
+                <p>Nuestras velas 100% soja son creadas mediante un proceso artesanal cuidadoso que garantiza la maxima calidad y durabilidad.</p>
             </div>
         """, unsafe_allow_html=True)
+
+        steps = [
+            ("Seleccion de Cera", "Comenzamos con cera de soja 100% pura, una fuente renovable y sostenible que ofrece el mejor rendimiento."),
+            ("Preparacion de la Cera", "La cera se funde suavemente a la temperatura exacta para mantener todas sus propiedades naturales y conseguir una textura perfecta."),
+            ("Mezcla de Fragancias", "Las fragancias de alta calidad se mezclan cuidadosamente con la cera para garantizar una distribucion uniforme del aroma en toda la vela."),
+            ("Seleccion del Adorno", "Elegimos adornos ceramicos artesanales unicos que complementen perfectamente cada vela."),
+            ("Vertido en Moldes", "Vertemos la cera con el adorno ceramico en moldes especiales. Cada vela se crea manualmente con amor y atencion."),
+            ("Enfriamiento y Curado", "Las velas se dejan enfriar lentamente durante 24-48 horas en condiciones controladas para que fraguen correctamente y adquieran su dureza ideal."),
+            ("Control de Calidad", "Cada vela pasa por un riguroso control de calidad para verificar su fragancia, color, dureza y presentacion."),
+            ("Empaque Cuidadoso", "Las velas se empacan cuidadosamente con proteccion especial para garantizar que lleguen en perfecto estado a tu hogar.")
+        ]
+
+        for idx, (title, desc) in enumerate(steps, 1):
+            st.markdown(f"""
+                <div class='process-step'>
+                    <div class='step-number'>{idx}</div>
+                    <div class='step-content'>
+                        <div class='step-title'>{title}</div>
+                        <div class='step-description'>{desc}</div>
+                    </div>
+                </div>
+            """, unsafe_allow_html=True)
+
+    else:
+        st.markdown("""
+            <div class='section-card'>
+                <div class='section-title'>🎨 Proceso de Creacion de Ceramicas</div>
+                <p>Cada adorno ceramico es una pieza unica creada con tecnicas artesanales tradicionales y dedicacion especial.</p>
+            </div>
+        """, unsafe_allow_html=True)
+
+        ceramic_steps = [
+            ("Diseno y Conceptualizacion", "Comenzamos con la idea de crear adornos unicos. Diseñamos cada pieza considerando armonia, belleza y su compatibilidad con nuestras velas."),
+            ("Preparacion de la Arcilla", "Seleccionamos arcilla de alta calidad y la preparamos cuidadosamente, asegurandonos de que este libre de impurezas y lista para moldear."),
+            ("Moldeo Manual", "Cada adorno es moldeado completamente a mano. Utilizamos tecnicas tradicionales de alfareria para crear formas hermosas y funcionales."),
+            ("Texturizado y Detalles", "Añadimos texturas y detalles especiales a cada pieza, creando patrones unicos que hacen que cada adorno sea irrepetible y especial."),
+            ("Secado Cuidadoso", "Las piezas se dejan secar lentamente en condiciones controladas durante varios dias para evitar fracturas y grietas."),
+            ("Acabado y Pulido", "Pulimos cuidadosamente cada superficie para conseguir el acabado perfecto, eliminar asperezas y realzar la belleza natural de la arcilla."),
+            ("Horneado a Alta Temperatura", "Las ceramicas se cocinan en horno a temperatura controlada, lo que les proporciona dureza y permite soportar el paso del tiempo."),
+            ("Pintado y Esmalte Final", "Aplicamos pintura y esmalte artesanal a cada adorno, utilizando colores que crean armonia con nuestras velas y crean una estetica unica.")
+        ]
+
+        for idx, (title, desc) in enumerate(ceramic_steps, 1):
+            st.markdown(f"""
+                <div class='process-step'>
+                    <div class='step-number'>{idx}</div>
+                    <div class='step-content'>
+                        <div class='step-title'>{title}</div>
+                        <div class='step-description'>{desc}</div>
+                    </div>
+                </div>
+            """, unsafe_allow_html=True)
 
     st.markdown("---")
 
@@ -305,5 +358,37 @@ else:
             <h3>¿Quieres tu vela personalizada?</h3>
             <p>Contacta con nosotros para crear algo especial juntos.</p>
             <p style='font-size: 14px; margin-top: 20px;'><strong>Pedidos por DM • Consulta precios y entregas</strong></p>
+        </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("---")
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        st.markdown("""
+            <div style='text-align: center;'>
+                <p><strong>📍 Ubicación:</strong></p>
+                <p>Fuengirola</p>
+            </div>
+        """, unsafe_allow_html=True)
+
+    with col2:
+        st.markdown("""
+            <div style='text-align: center;'>
+                <a href='https://www.instagram.com/auradahi/' target='_blank' class='btn-link'>📸 Instagram</a>
+            </div>
+        """, unsafe_allow_html=True)
+
+    with col3:
+        st.markdown("""
+            <div style='text-align: center;'>
+                <a href='https://wa.me/34611822813' target='_blank' class='btn-link'>💬 WhatsApp</a>
+            </div>
+        """, unsafe_allow_html=True)
+
+    st.markdown("""
+        <div style='text-align: center; margin-top: 40px; color: #999;'>
+            <p><small>Consulta precios, entregas y personalizaciones por DM 📩</small></p>
         </div>
     """, unsafe_allow_html=True)
