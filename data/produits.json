@@ -2,18 +2,33 @@
   "productos": [
     {
       "imagen": "foto1.jpg",
-      "nombre": "Creación 1",
-      "descripcion": "Vela artesanal 100% soja con adorno cerámico único"
+      "nombre": "Vela 1",
+      "descripcion": "Vela artesanal 100% soja",
+      "categoria": "velas"
     },
     {
       "imagen": "foto2.jpg",
-      "nombre": "Creación 2",
-      "descripcion": "Vela artesanal 100% soja con adorno cerámico único"
+      "nombre": "Vela 2",
+      "descripcion": "Vela artesanal 100% soja",
+      "categoria": "velas"
     },
     {
       "imagen": "foto3.jpg",
-      "nombre": "Creación 3",
-      "descripcion": "Vela artesanal 100% soja con adorno cerámico único"
+      "nombre": "Vela 3",
+      "descripcion": "Vela artesanal 100% soja",
+      "categoria": "velas"
+    },
+    {
+      "imagen": "foto4.jpg",
+      "nombre": "Ceramica 1",
+      "descripcion": "Adorno cerámico único",
+      "categoria": "ceramicas"
+    },
+    {
+      "imagen": "foto5.jpg",
+      "nombre": "Ceramica 2",
+      "descripcion": "Adorno cerámico único",
+      "categoria": "ceramicas"
     }
   ]
 }

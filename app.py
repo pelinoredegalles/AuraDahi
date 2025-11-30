@@ -2,7 +2,17 @@ import streamlit as st
 from PIL import Image
 import json
 
-st.set_page_config(page_title="Aura Dahi - Velas Artesanales", layout="wide", initial_sidebar_state="expanded")
+def resize_image_fit(image_path, size=300):
+    img = Image.open(image_path)
+    img.thumbnail((size, size), Image.Resampling.LANCZOS)
+    
+    background = Image.new('RGB', (size, size), color=(245, 241, 237))
+    offset = ((size - img.width) // 2, (size - img.height) // 2)
+    background.paste(img, offset)
+    
+    return background
+
+st.set_page_config(page_title="Aura Dahi - Creaciones Artesanales", layout="wide", initial_sidebar_state="collapsed")
 
 with st.sidebar:
     st.markdown("<h2 style='color: #9B8B7E; text-align: center;'>🕯️ Aura Dahi</h2>", unsafe_allow_html=True)
@@ -152,22 +162,48 @@ if page == "🏠 Inicio":
 
     st.markdown("<h2 style='text-align: center; color: #9B8B7E;'>🕯️ Nuestras Creaciones</h2>", unsafe_allow_html=True)
 
+    if "filtro_categoria" not in st.session_state:
+        st.session_state.filtro_categoria = "todos"
+
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        if st.button("Todos", use_container_width=True, key="btn_todos"):
+            st.session_state.filtro_categoria = "todos"
+    with col2:
+        if st.button("🕯️ Velas", use_container_width=True, key="btn_velas_inicio"):
+            st.session_state.filtro_categoria = "velas"
+    with col3:
+        if st.button("🪔 Cerámicas", use_container_width=True, key="btn_ceramicas_inicio"):
+            st.session_state.filtro_categoria = "ceramicas"
+    with col4:
+        st.empty()
+
+    st.markdown("---")
+
     with open('data/produits.json', 'r', encoding='utf-8') as f:
         data = json.load(f)
         productos = data['productos']
 
-    for i in range(0, len(productos), 3):
-        cols = st.columns(3)
-        for j, col in enumerate(cols):
-            if i + j < len(productos):
-                producto = productos[i + j]
-                with col:
-                    try:
-                        img = Image.open(f"data/{producto['imagen']}")
-                        st.image(img, use_container_width=True)
-                        st.markdown(f"<div class='product-card'><h4>{producto['nombre']}</h4><p>{producto['descripcion']}</p></div>", unsafe_allow_html=True)
-                    except FileNotFoundError:
-                        st.warning(f"Imagen {producto['imagen']} no encontrada")
+    if st.session_state.filtro_categoria == "todos":
+        productos_filtrados = productos
+    else:
+        productos_filtrados = [p for p in productos if p.get('categoria') == st.session_state.filtro_categoria]
+
+    if len(productos_filtrados) == 0:
+        st.markdown("<p style='text-align: center; color: #9B8B7E;'>No hay creaciones en esta categoría</p>", unsafe_allow_html=True)
+    else:
+        for i in range(0, len(productos_filtrados), 3):
+            cols = st.columns(3)
+            for j, col in enumerate(cols):
+                if i + j < len(productos_filtrados):
+                    producto = productos_filtrados[i + j]
+                    with col:
+                        try:
+                            img = resize_image_fit(f"data/{producto['imagen']}", size=300)
+                            st.image(img, use_container_width=True)
+                            st.markdown(f"<div class='product-card'><h4>{producto['nombre']}</h4><p>{producto['descripcion']}</p></div>", unsafe_allow_html=True)
+                        except FileNotFoundError:
+                            st.warning(f"Imagen {producto['imagen']} no encontrada")
 
     st.markdown("---")
 
