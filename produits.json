@@ -1,0 +1,19 @@
+{
+  "productos": [
+    {
+      "imagen": "foto1.jpg",
+      "nombre": "Creación 1",
+      "descripcion": "Vela artesanal 100% soja con adorno cerámico único"
+    },
+    {
+      "imagen": "foto2.jpg",
+      "nombre": "Creación 2",
+      "descripcion": "Vela artesanal 100% soja con adorno cerámico único"
+    },
+    {
+      "imagen": "foto3.jpg",
+      "nombre": "Creación 3",
+      "descripcion": "Vela artesanal 100% soja con adorno cerámico único"
+    }
+  ]
+}
