@@ -23,18 +23,6 @@
       "nombre": "Ceramica 1",
       "descripcion": "Adorno cerámico único",
       "categoria": "ceramicas"
-    },
-    {
-      "imagen": "foto5.jpg",
-      "nombre": "Ceramica 2",
-      "descripcion": "Adorno cerámico único",
-      "categoria": "ceramicas"
-    },
-    {
-      "imagen": "foto2.jpg",
-      "nombre": "angeles",
-      "descripcion": "Angeles magnificos",
-      "categoria": "velas"
     }
   ]
 }
