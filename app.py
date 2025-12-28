@@ -2,6 +2,7 @@ import streamlit as st
 from PIL import Image
 import json
 
+
 def resize_image_fit(image_path, size=300):
     img = Image.open(image_path)
     img.thumbnail((size, size), Image.Resampling.LANCZOS)
